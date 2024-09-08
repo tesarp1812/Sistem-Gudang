@@ -18,5 +18,26 @@ $router->get('/', function () use ($router) {
 });
 
 $router->post('login', 'AuthController@login');
-$router->get('user', 'AuthController@getUser');
+
+$router->get('user', 'UserController@getAllUser');
+$router->get('user/data', 'UserController@getUser');
+$router->post('user', 'UserController@store');
+$router->get('/user/{id}', 'UserController@show');
+$router->put('/user/{id}', 'UserController@update');
+$router->delete('/user/{id}', 'UserController@destroy');
+
+$router->get('barang', 'BarangController@getBarang');
+$router->get('barang/{id}', 'BarangController@show');
+$router->post('/barang', 'BarangController@store');
+$router->put('/barang/{id}', 'BarangController@update');
+$router->delete('/barang/{id}', 'BarangController@destroy');
+
+$router->get('mutasi', 'MutasiController@getAllMutasi');
+$router->post('mutasi', 'MutasiController@store');
+$router->get('mutasi/{id}', 'MutasiController@show');
+$router->put('mutasi/{id}', 'MutasiController@update');
+$router->delete('mutasi/{id}', 'MutasiController@destroy');
+$router->get('mutasi-barang/{id}', 'MutasiController@mutasiBarang');
+$router->get('mutasi-user/{id}', 'MutasiController@mutasiUser');
+
 

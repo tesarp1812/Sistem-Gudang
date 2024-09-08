@@ -11,13 +11,19 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-        // $user = User::where('email', $credentials['email'])->first();
-        // if (!$user || !Hash::check($credentials['password'], $user->password)) {
-        //     return response()->json(['error' => 'Invalid credentials'], 401);
-        // }
- 
-        if ($credentials['password'] != "jancok") {
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        // Check if email and password are provided
+        if (!$email || !$password) {
+            return response()->json(['error' => 'Email and password are required'], 400);
+        }
+
+        // Find the user by email
+        $user = User::where('email', $email)->first();
+
+        // Check if user exists and if password is correct
+        if (!$user || !Hash::check($password, $user->password)) {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
@@ -31,29 +37,4 @@ class AuthController extends Controller
         return response()->json(['token' => $token]);
     }
 
-    public function getUser(Request $request)
-    {
-        $authHeader = $request->header('Authorization');
-        if (!$authHeader) {
-            return response()->json(['error' => 'Authorization header missing'], 401);
-        }
-
-        $token = str_replace('Bearer ', '', $authHeader);
-        $decoded = JwtHelper::decode($token);
-
-
-        // if (isset($decoded['error'])) {
-        //     return response()->json($decoded, 401);
-        // }
-
-        // $user = User::find($decoded->sub);
-
-        // if (!$user) {
-        //     return response()->json(['error' => 'User not found'], 404);
-        // }
-
-        // return response()->json($user);
-
-        return response()->json($decoded);
-    }
 }

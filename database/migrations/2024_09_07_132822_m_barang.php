@@ -17,13 +17,13 @@ return new class extends Migration
             $table->string('kode')->unique();
             $table->string('kategori');
             $table->string('lokasi');
-            $table->text('deskripsi')->nullable(); 
-            $table->integer('stok')->default(0); 
+            $table->text('deskripsi')->nullable();
+            $table->integer('stok')->default(0);
             $table->decimal('harga', 10, 2)->nullable();
             $table->timestamps();
         });
     }
- 
+
     /**
      * Reverse the migrations.
      */

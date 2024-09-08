@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Barang extends Model
+class Mutasi extends Model
 {
     // Jika nama tabel tidak mengikuti konvensi Laravel
-    protected $table = 'm_barang';
+    protected $table = 'm_mutasi';
 
     // Jika Anda menggunakan UUID sebagai primary key
     protected $primaryKey = 'id';
@@ -17,13 +17,10 @@ class Barang extends Model
     // Menentukan atribut yang dapat diisi secara massal
     protected $fillable = [
         'id',
-        'nama_barang',
-        'kode',
-        'kategori',
-        'lokasi',
-        'deskripsi',
-        'stok',
-        'harga',
+        'm_barang_id',
+        'm_users_id',
+        'jenis_mutasi',
+        'jumlah',
     ];
 
 
