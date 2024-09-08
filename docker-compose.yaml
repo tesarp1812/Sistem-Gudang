@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  sistem-gudang:
+    container_name: sistem-gudang
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true

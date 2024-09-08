@@ -18,6 +18,13 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
+        DB::table('m_user')->insert([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'password' => bcrypt('test123'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         for ($i = 0; $i < 10; $i++) {
             $userId = Str::uuid();
